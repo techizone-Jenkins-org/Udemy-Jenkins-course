@@ -96,5 +96,5 @@ Manage Jenkins ===> Global Tool Configuration ===> Scroll down to "Maven"
 ### Deploy our AddressBook App in Tomcat using Freestle JOB
 
 ```
-Steps
+Follow These in Tomcat-Deploy Folder
 ```
