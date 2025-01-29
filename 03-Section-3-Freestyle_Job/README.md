@@ -57,19 +57,41 @@ If we use Webhooks Job will be Trigger Immediately whenever developer push the C
 ```
 Go to JOB ==> Build Triggers ==> Select GitHub hook trigger for GITScm Polling
 ```
+![image](https://github.com/user-attachments/assets/5f1110df-5a7d-4c75-b1dc-b9f16bf3453c)
+
 ##### Step:2 
 ```
-Go to JOB ==> Build Triggers ==> Select GitHub hook trigger for GITScm Polling
+Step:2  ===> Copy your Jenkins JOB URL
 ```
+![image](https://github.com/user-attachments/assets/81f1660b-6b81-4e7e-a60b-926e16e0b6c8)
+
 ##### Step:3
 ```
-Go to JOB ==> Build Triggers ==> Select GitHub hook trigger for GITScm Polling
+Step:3  ===> go to our GitHub Project  Repository ==> Settings ==> webhooks ===> Click on Add Webhook
 ```
+Mention your Jenkins URL like below format
+```
+http://<Jenkins-URL>/github-webhook
+```
+![image](https://github.com/user-attachments/assets/10841439-a3e8-4a39-979e-b9525d523686)
+
+
 ## LAB-4
 ### Build a JAVA Project using Maven
+We need to Follow these steps
 ```
-Steps
+            Step:1 ===> Install Maven Tool in Jenkins
+            Step:2 ===> Maven Integration to your JOB
 ```
+#### Step:1 ===> Install Maven Tool in Jenkins
+```
+Manage Jenkins ===> Global Tool Configuration ===> Scroll down to "Maven"
+```
+![image](https://github.com/user-attachments/assets/f8b7f6a4-ff32-4d58-8543-aba2d57dc399)
+
+![image](https://github.com/user-attachments/assets/2bd46ea3-38c5-4e60-86e1-46bb8cd7f0b2)
+
+
 ## LAB-5
 ### Deploy our AddressBook App in Tomcat using Freestle JOB
 
