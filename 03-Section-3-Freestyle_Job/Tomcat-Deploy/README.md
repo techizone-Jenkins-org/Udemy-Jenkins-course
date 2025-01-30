@@ -85,3 +85,15 @@ systemctl status tomcat.service
     Method:2 ==> Deploy using "Deploy to container"
 ```
 ## Method:1 ==> Deploy using "Publish over SSH"
+### Step:1 ===> Install and Configure "publish over SSH" Plug-in
+```
+Manage Jenkins ==> Manage Plug-in ==> Available ==> search publish over SSH ==> Install without restart
+```
+### Step:2 ===> Install & Configure "Maven"
+If we want to do any SSH to Remote server we need these details
+1. IP-Address or Hostname
+2. Username
+3. Password
+```
+Manage Jenkins ==> Manage Plug-in ==> Available ==> search publish over SSH ==> Install without restart
+```
