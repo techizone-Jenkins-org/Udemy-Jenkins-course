@@ -81,19 +81,93 @@ systemctl status tomcat.service
 ```
 # We can Deploy the Aplication in 2 ways 
 ```
-    Method:1 ==> Deploy using "Publish over SSH"
-    Method:2 ==> Deploy using "Deploy to container"
+    Method:1 ==> Deploy using "Deploy to container"
+    Method:2 ==> Deploy using "Publish over SSH"
 ```
-## Method:1 ==> Deploy using "Publish over SSH"
+## Method:1 ==> Deploy using "Deploy to container"
+### Step:1 ===> Install and Configure "Deploy to container" Plug-in
+To deploy .war in Tomcat server using jenkins we need to install one plug-in "Deploy to container"
+```
+Manage Jenkins ==> Manage Plug-in ==> Available ==> search "Deploy to container" ==> Install without restart
+```
+Note ==> To deploy war to tomcat server from jenkins, you must assign this role "manage-script" to your tomcat user
+
+### Step:2 ===> Create Jenkins "JOB" 
+New item ==> JOB-Name "Deploy Container JOB" and select "Freestyle" job
+1. Pull the Code
+```
+JOB ==> Under SCM ==> Select "GIT" ==> Paster your GIT URL and enter your Branch-Name
+```
+Note ==> HERE we use Public Repository, so we no need to enter Credentials
+
+2. Remove the old Workspace before Build
+```
+JOB ==> Build Environment ==> Select "Deleter workspace before Build Start"
+```
+3. Build the Package
+Install Maven Tool in Jenkins
+```
+Manage Jenkins ===> Global Tool Configuration ===> Scroll down to "Maven"
+```
+![image](https://github.com/user-attachments/assets/f8b7f6a4-ff32-4d58-8543-aba2d57dc399)
+
+![image](https://github.com/user-attachments/assets/2bd46ea3-38c5-4e60-86e1-46bb8cd7f0b2)
+
+Configure Maven in your JOB
+```
+JOB ==> Build steps ==> Select "Invoke Top level Maven" ==> Select the maven Version and Goal "compile package"
+```
+4. Deploy WAR file to Tomcat using "Deploy to Container"
+```
+Job configuration ==> post-build Action ==> Add post-build Action ==>  select "Deploy war/ear to container" 
+```
+![image](https://github.com/user-attachments/assets/56d6680e-0ce7-497e-b465-d70627ad35cf)
+
+![image](https://github.com/user-attachments/assets/d14f9a77-d43b-4fbd-b150-5332138628ff)
+
+
+## Method:2 ==> Deploy using "Publish over SSH"
 ### Step:1 ===> Install and Configure "publish over SSH" Plug-in
+"publish over SSH" Plug-in Install
 ```
 Manage Jenkins ==> Manage Plug-in ==> Available ==> search publish over SSH ==> Install without restart
 ```
-### Step:2 ===> Install & Configure "Maven"
+"publish over SSH" Plug-in Configuration
 If we want to do any SSH to Remote server we need these details
 1. IP-Address or Hostname
 2. Username
 3. Password
 ```
-Manage Jenkins ==> Manage Plug-in ==> Available ==> search publish over SSH ==> Install without restart
+manage Jenkins ==> Manage Credentials ==> create credentials ==> select "username with private key" 
+	enter username "ec2-user" and private key paste your "PEM" file
+```
+
+### Step:2 ===> Create Jenkins "JOB" 
+New item ==> JOB-Name "Deploy Container JOB" and select "Freestyle" job
+1. Pull the Code
+```
+JOB ==> Under SCM ==> Select "GIT" ==> Paster your GIT URL and enter your Branch-Name
+```
+Note ==> HERE we use Public Repository, so we no need to enter Credentials
+
+2. Remove the old Workspace before Build
+```
+JOB ==> Build Environment ==> Select "Deleter workspace before Build Start"
+```
+3. Build the Package
+Install Maven Tool in Jenkins
+```
+Manage Jenkins ===> Global Tool Configuration ===> Scroll down to "Maven"
+```
+![image](https://github.com/user-attachments/assets/f8b7f6a4-ff32-4d58-8543-aba2d57dc399)
+
+![image](https://github.com/user-attachments/assets/2bd46ea3-38c5-4e60-86e1-46bb8cd7f0b2)
+
+Configure Maven in your JOB
+```
+JOB ==> Build steps ==> Select "Invoke Top level Maven" ==> Select the maven Version and Goal "compile package"
+```
+4. Deploy WAR file to Tomcat using "Publish over SSH"
+```
+Job configuration ==> post-build Action ==> Add post-build Action ==> select "Publish over SSH"
 ```
